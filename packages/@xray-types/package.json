@@ -1,0 +1,28 @@
+{
+  "name": "@xray/types",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "yarn run clean && yarn run compile",
+    "clean": "rimraf -rf ./dist && rimraf -rf ./build",
+    "compile": "rollup -c --bundleConfigAsCjs && yarn run compile:types",
+    "compile:types": "tsc -d -p tsconfig.build.json --emitDeclarationOnly --declarationDir dist/types"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "*",
+    "@rollup/plugin-node-resolve": "*",
+    "@rollup/plugin-typescript": "*",
+    "@types/node": "*",
+    "rimraf": "*",
+    "rollup-plugin-peer-deps-external": "*",
+    "rollup-plugin-terser": "*",
+    "ts-node": "*",
+    "tsconfig-paths": "*",
+    "typescript": "*"
+  },
+  "gitHead": "ff297101a4dd1311beb7184ac535c61ecc3a2b87"
+}

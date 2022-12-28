@@ -1,0 +1,4 @@
+{
+  "watch": ["src/", ".env","../../packages/@xray-api/**/src/**", "../../packages/@xray-types/src/**", "../../packages/@xray-plugin/**/src/**"],
+  "ext": "ts"
+}

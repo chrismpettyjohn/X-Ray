@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@xray/api": ["apps/api/src"],
+      "@xray/web": ["apps/web/src"],
+      "@xray/web": ["packages/@xray-web/src"],
+      "@xray/types": ["packages/@xray-types/src"],
+      "@xray/media":  ["packages/@xray-api/media/src"],
+      "@xray/media-upload":  ["packages/@xray-api/media-upload/src"],
+      "@xray/users":  ["packages/@xray-api/user/src"],
+      "@xray/common":  ["packages/@xray-api/common/src"],
+      "@xray/google":  ["packages/@xray-api/google/src"],
+      "@xray/listing":  ["packages/@xray-api/listing/src"],
+      "@xray/session":  ["packages/@xray-api/session/src"],
+      "@xray/database":  ["packages/@xray-api/database/src"],
+      "@xray/permission-group":  ["packages/@xray-api/permission/src"]
+    },
+    "noEmit": true
+  },
+  "include": [
+    "apps",
+    "packages"
+  ]
+}
