@@ -12,6 +12,7 @@
     "@xray/database": "*",
     "@xray/google": "*",
     "@xray/media": "*",
+    "@xray/media-upload": "*",
     "@xray/permission-group": "*",
     "@xray/session": "*",
     "@xray/users": "*",
