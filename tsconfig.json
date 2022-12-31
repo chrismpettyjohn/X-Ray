@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@xray/api": ["apps/api/src"],
-      "@xray/web": ["apps/web/src"],
+      "@xray/app": ["apps/app/src"],
       "@xray/web": ["packages/@xray-web/src"],
       "@xray/types": ["packages/@xray-types/src"],
       "@xray/media":  ["packages/@xray-api/media/src"],
