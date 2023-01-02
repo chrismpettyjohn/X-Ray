@@ -17,7 +17,7 @@
       "@xray/session":  ["packages/@xray-api/session/src"],
       "@xray/database":  ["packages/@xray-api/database/src"],
       "@xray/permission-group":  ["packages/@xray-api/permission/src"]
-    }
+    },
   },
   "include": [
     "apps",

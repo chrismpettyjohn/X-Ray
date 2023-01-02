@@ -1,11 +1,14 @@
-import { toast } from "react-toastify";
-import React, { useState } from "react";
-import { Avatar, Grid } from "@mui/material";
-import { mediaService } from "@xray/web";
-import { Dropzone } from "../../../components/dropzone/Dropzone";
-import { ProfilePictureEditorProps } from "./ProfilePictureEditor.types";
+import {toast} from 'react-toastify';
+import React, {useState} from 'react';
+import {Avatar, Grid} from '@mui/material';
+import {mediaService} from '@xray/web';
+import {Dropzone} from '../../../components/dropzone/Dropzone';
+import {ProfilePictureEditorProps} from './ProfilePictureEditor.types';
 
-export function ProfilePictureEditor({ defaultProfilePicture, onChangeProfilePicture }: ProfilePictureEditorProps) {
+export function ProfilePictureEditor({
+  defaultProfilePicture,
+  onChangeProfilePicture,
+}: ProfilePictureEditorProps) {
   const [profilePicture, setProfilePicture] = useState(defaultProfilePicture);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,7 +20,7 @@ export function ProfilePictureEditor({ defaultProfilePicture, onChangeProfilePic
       onChangeProfilePicture(newImageMedia);
       toast.success('Successfully uploaded new image');
     } catch (e: any) {
-      toast.error('Failed to upload image')
+      toast.error('Failed to upload image');
       throw e;
     } finally {
       setIsLoading(false);
@@ -27,15 +30,27 @@ export function ProfilePictureEditor({ defaultProfilePicture, onChangeProfilePic
   return (
     <Grid container spacing={4} sx={{mb: 4}}>
       <Grid item>
-        <Dropzone files={[]} onChange={newFiles => onUploadImage(newFiles[0])} acceptedType="image" height={100} width={100} style={{borderRadius: '100%'}}>
+        <Dropzone
+          files={[]}
+          onChange={newFiles => onUploadImage(newFiles[0])}
+          acceptedType="image"
+          height={100}
+          width={100}
+          style={{borderRadius: '100%'}}
+        >
           <div style={{textAlign: 'center', fontSize: '2rem'}}>
-            <i className={isLoading ? 'fas fa-spinner fa-spin' : 'fas fa-file-upload'} style={{marginBottom: 4}} />
+            <i
+              className={
+                isLoading ? 'fas fa-spinner fa-spin' : 'fas fa-file-upload'
+              }
+              style={{marginBottom: 4}}
+            />
           </div>
         </Dropzone>
       </Grid>
       <Grid item>
-        <Avatar src={profilePicture?.url} style={{height: 100, width: 100}}/>
+        <Avatar src={profilePicture?.url} style={{height: 100, width: 100}} />
       </Grid>
     </Grid>
-  )
+  );
 }

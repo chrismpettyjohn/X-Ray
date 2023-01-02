@@ -2,7 +2,7 @@ import React from 'react';
 import {toast} from 'react-toastify';
 import {useDropzone} from 'react-dropzone';
 import {DropzoneProps} from './Dropzone.types';
-import { Grid } from "@mui/material";
+import {Grid} from '@mui/material';
 
 export function Dropzone({
   children,
@@ -38,7 +38,7 @@ export function Dropzone({
           width,
           height,
           overflow: 'hidden',
-          ...style
+          ...style,
         }}
         {...getRootProps()}
       >
@@ -46,16 +46,17 @@ export function Dropzone({
         {files.length > 0 ? (
           <Grid container>
             {files.map((file, fileIndex) => (
-              <Grid
-                item
-                key={`file_upload_${fileIndex}`}
-                xs={12}
-              >
+              <Grid item key={`file_upload_${fileIndex}`} xs={12}>
                 <img
                   className="card-img-top"
                   src={URL.createObjectURL(file)}
                   alt={file.name}
-                  style={{imageRendering: 'crisp-edges', flexShrink: 0, minWidth: '100%', minHeight: '100%'}}
+                  style={{
+                    imageRendering: 'crisp-edges',
+                    flexShrink: 0,
+                    minWidth: '100%',
+                    minHeight: '100%',
+                  }}
                 />
               </Grid>
             ))}

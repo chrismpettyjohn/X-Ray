@@ -1,4 +1,4 @@
-import { Media } from "@xray/types";
+import {Media} from '@xray/types';
 
 export interface ProfilePictureEditorProps {
   defaultProfilePicture?: Media;

@@ -2,7 +2,11 @@ import React, {useState} from 'react';
 import {PasswordFieldProps} from './PasswordField.types';
 import {TextField, InputAdornment, IconButton} from '@mui/material';
 
-export function PasswordField({ password, onChange, ...props }: PasswordFieldProps) {
+export function PasswordField({
+  password,
+  onChange,
+  ...props
+}: PasswordFieldProps) {
   const [showPassword, setShowPassword] = useState(false);
 
   function toggleShowPassword() {
@@ -14,7 +18,7 @@ export function PasswordField({ password, onChange, ...props }: PasswordFieldPro
       label="Password"
       variant="outlined"
       value={password}
-      type={showPassword ? "text" : "password"}
+      type={showPassword ? 'text' : 'password'}
       onChange={event => onChange(event.target.value)}
       InputProps={{
         endAdornment: (
@@ -23,13 +27,15 @@ export function PasswordField({ password, onChange, ...props }: PasswordFieldPro
               aria-label="toggle password visibility"
               onClick={toggleShowPassword}
             >
-              <i className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`} />
+              <i
+                className={`fas ${showPassword ? 'fa-eye' : 'fa-eye-slash'}`}
+              />
             </IconButton>
           </InputAdornment>
-        )
+        ),
       }}
       fullWidth
       {...props}
     />
-  )
+  );
 }

@@ -12,7 +12,7 @@ export function LoginPage() {
           sx={{
             display: 'flex',
             justifyContent: 'center',
-            mt: 4
+            mt: 4,
           }}
         >
           <Card sx={{padding: 2, width: '100%'}}>

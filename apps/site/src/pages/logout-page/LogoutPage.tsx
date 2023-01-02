@@ -2,7 +2,7 @@ import {useLocation} from 'wouter';
 import {toast} from 'react-toastify';
 import {useContext, useEffect} from 'react';
 import {sessionContext, sessionService} from '@xray/web';
-import { GET_HOME_PAGE_LINK, GET_LOGIN_PAGE_LINK } from '../links';
+import {GET_HOME_PAGE_LINK, GET_LOGIN_PAGE_LINK} from '../links';
 
 export function LogoutPage() {
   const [, setLocation] = useLocation();

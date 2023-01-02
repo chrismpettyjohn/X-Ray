@@ -1,5 +1,6 @@
 import Axios, {AxiosInstance} from 'axios';
 import {setupCache} from 'axios-cache-adapter';
+import {API_BASE_URL} from '../environment';
 
 const cache = setupCache({
   maxAge: 0,
@@ -7,6 +8,6 @@ const cache = setupCache({
 
 export const backendAPI: AxiosInstance = Axios.create({
   adapter: cache.adapter,
-  baseURL: process.env.REACT_APP_API ?? '/api',
+  baseURL: API_BASE_URL,
   withCredentials: true,
 });

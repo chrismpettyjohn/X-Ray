@@ -1,4 +1,4 @@
-import { User } from "@xray/types";
+import {User} from '@xray/types';
 
 export interface CustomizeProfileFormProps {
   defaultUser: User;

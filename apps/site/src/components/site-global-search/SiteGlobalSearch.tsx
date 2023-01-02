@@ -1,7 +1,7 @@
 import React from 'react';
 import {alpha, InputBase, styled} from '@mui/material';
 
-const Search = styled('div')(({ theme }) => ({
+const Search = styled('div')(({theme}) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -16,7 +16,7 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({theme}) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
   position: 'absolute',
@@ -26,7 +26,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const StyledInputBase = styled(InputBase)(({theme}) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
@@ -51,8 +51,8 @@ export function SiteGlobalSearch() {
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Search…"
-        inputProps={{ 'aria-label': 'search' }}
+        inputProps={{'aria-label': 'search'}}
       />
     </Search>
-  )
+  );
 }

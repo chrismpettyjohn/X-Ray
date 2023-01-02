@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { XRayWeb } from './XRayWeb';
+import {XRayWeb} from './XRayWeb';
 import 'react-toastify/dist/ReactToastify.css';
-import "react-toggle/style.css"
+import 'react-toggle/style.css';
 
-ReactDOM.render((
+ReactDOM.render(
   <React.StrictMode>
     <XRayWeb />
-  </React.StrictMode>
-), document.getElementById('root'));
+  </React.StrictMode>,
+  document.getElementById('root')
+);
