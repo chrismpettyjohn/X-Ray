@@ -7,14 +7,13 @@ import {
   Listing,
   UpdateListingDTO,
 } from '@xray/types';
-import {stringify} from 'querystring';
 
 export class ListingServiceImplementation implements ListingService {
   async getListings(
     filterListingDTO: FilterListingDTO = {}
   ): Promise<Listing[]> {
     const matchingListings: AxiosResponse<Listing[]> = await backendAPI.get(
-      `listings?${stringify(filterListingDTO as any)}`
+      `listings?${new URLSearchParams(filterListingDTO as any).toString()}`
     );
     return matchingListings.data;
   }

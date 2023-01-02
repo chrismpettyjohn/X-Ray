@@ -1,6 +1,6 @@
 import {OrderBy} from './database.types';
 import EventEmitter from 'eventemitter3';
-import {FindConditions, Repository} from 'typeorm';
+import {FindOptionsWhere, Repository} from 'typeorm';
 import {BaseRepositoryEvents} from './base.repository.types';
 import {QueryDeepPartialEntity} from 'typeorm/query-builder/QueryPartialEntity';
 
@@ -32,7 +32,7 @@ export abstract class BaseRepository<Entity extends {id?: number}> {
   }
 
   find(
-    where?: FindConditions<Entity>,
+    where?: FindOptionsWhere<Entity>,
     order?: OrderBy<Entity>
   ): Promise<Entity[]> {
     return this.repo.find({
@@ -43,18 +43,18 @@ export abstract class BaseRepository<Entity extends {id?: number}> {
   }
 
   findOne(
-    where?: FindConditions<Entity>,
+    where?: FindOptionsWhere<Entity>,
     order?: OrderBy<Entity>
   ): Promise<Entity | undefined> {
     return this.repo.findOne({
       where,
       ...order,
       relations: this.eagerRelations,
-    });
+    }) as any;
   }
 
   findOneOrFail(
-    where?: FindConditions<Entity>,
+    where?: FindOptionsWhere<Entity>,
     order?: OrderBy<Entity>
   ): Promise<Entity> {
     return this.repo.findOneOrFail({
@@ -65,14 +65,14 @@ export abstract class BaseRepository<Entity extends {id?: number}> {
   }
 
   async update(
-    conditions: FindConditions<Entity>,
+    conditions: FindOptionsWhere<Entity>,
     changes: QueryDeepPartialEntity<Entity>
   ): Promise<void> {
     await this.repo.update(conditions, changes);
     this.eventEmitter.emit('OBJECT_UPDATED', conditions, changes as Entity);
   }
 
-  async delete(conditions: FindConditions<Entity>): Promise<void> {
+  async delete(conditions: FindOptionsWhere<Entity>): Promise<void> {
     await this.repo.delete(conditions);
     this.eventEmitter.emit('OBJECT_DELETED', conditions);
   }

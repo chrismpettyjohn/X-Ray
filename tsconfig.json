@@ -1,10 +1,11 @@
 {
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
+    "composite": true,
     "baseUrl": ".",
     "paths": {
       "@xray/api": ["apps/api/src"],
-      "@xray/app": ["apps/app/src"],
+      "@xray/site": ["apps/site/src"],
       "@xray/web": ["packages/@xray-web/src"],
       "@xray/types": ["packages/@xray-types/src"],
       "@xray/media":  ["packages/@xray-api/media/src"],
@@ -16,8 +17,7 @@
       "@xray/session":  ["packages/@xray-api/session/src"],
       "@xray/database":  ["packages/@xray-api/database/src"],
       "@xray/permission-group":  ["packages/@xray-api/permission/src"]
-    },
-    "noEmit": true
+    }
   },
   "include": [
     "apps",

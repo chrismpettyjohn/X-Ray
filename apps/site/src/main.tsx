@@ -1,10 +1,11 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { XRayWeb } from './XRayWeb';
+import 'react-toastify/dist/ReactToastify.css';
+import "react-toggle/style.css"
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.render((
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <XRayWeb />
+  </React.StrictMode>
+), document.getElementById('root'));

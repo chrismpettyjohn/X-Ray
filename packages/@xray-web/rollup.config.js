@@ -16,7 +16,7 @@ export default {
   output: [
     {
       dir: './dist',
-      format: 'umd',
+      format: 'esm',
       name: 'core',
       sourcemap: false,
       inlineDynamicImports: true,
