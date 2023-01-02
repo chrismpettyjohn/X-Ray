@@ -12,11 +12,10 @@
     "compile": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "eventemitter3": "4.0.7",
-    "mysql2": "2.2.5",
+    "eventemitter3": "5.0.0",
     "node-cache": "5.1.2",
-    "randomstring": "1.2.1",
-    "typeorm": "0.2.31"
+    "randomstring": "1.2.3",
+    "typeorm": "0.3.11"
   },
   "devDependencies": {
     "@xray/common": "*",
