@@ -36,10 +36,19 @@ type UserModel {
   profilePicture: MediaModel
 }
 
+type SessionModel {
+  userID: Float
+  active: Boolean
+}
+
 type Query {
+  getSession: UserModel!
   getUserByID: UserModel!
 }
 
 type Mutation {
+  createSession: SessionModel!
+  updatePreferences: Boolean!
+  endSession: Boolean!
   createUser: UserModel!
 }

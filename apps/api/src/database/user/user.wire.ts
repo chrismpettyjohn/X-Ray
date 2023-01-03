@@ -1,6 +1,6 @@
+import {mediaWire} from '../media/media.wire';
 import {User} from '@xray/types';
 import {UserEntity} from './user.entity';
-import {mediaWire} from '../media/media.wire';
 import {permissionGroupWire} from '../permission-group/permission-group.wire';
 
 export function userWire(

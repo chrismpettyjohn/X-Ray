@@ -5,7 +5,7 @@ import {SessionService} from './session.service';
 import {MediaModule} from '../media/media.module';
 import {CommonModule} from '../common/common.module';
 import {GoogleModule} from '../google/google.module';
-import {SessionController} from './session.controller';
+import {SessionResolver} from './session.resolver';
 import {BearerTokenService} from './bearer-token.service';
 import {BearerTokenStrategy} from './bearer-token.strategy';
 import {DatabaseModule} from '../database/database.module';
@@ -26,9 +26,9 @@ import {JWT_SECRET, JWT_EXPIRES} from '../common/environment';
       },
     }),
   ],
-  controllers: [SessionController],
   providers: [
     SessionService,
+    SessionResolver,
     BearerTokenService,
     BearerTokenStrategy,
     PermissionScopeGuard,
