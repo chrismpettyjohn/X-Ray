@@ -46,6 +46,8 @@ type Query {
   permissionGroup: PermissionGroupModel!
   session: UserModel!
   user: UserModel!
+  medias: [MediaModel!]!
+  media: MediaModel!
 }
 
 type Mutation {
@@ -56,4 +58,5 @@ type Mutation {
   sessionUpdatePreferences: Boolean!
   sessionLogout: Boolean!
   userCreate: UserModel!
+  mediaCreate: MediaModel!
 }

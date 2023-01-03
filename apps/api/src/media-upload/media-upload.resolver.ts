@@ -1,6 +1,7 @@
 import {Express} from 'express';
 import {Media} from '@xray/types';
 import {MediaPipe} from '../media/media.pipe';
+import {MediaModel} from '../media/media.model';
 import {MediaService} from '../media/media.service';
 import {mediaWire} from '../database/media/media.wire';
 import {FileInterceptor} from '@nestjs/platform-express';
@@ -8,31 +9,25 @@ import {UserEntity} from '../database/user/user.entity';
 import {MediaEntity} from '../database/media/media.entity';
 import {HasSession} from '../session/has-session.decorator';
 import {GetSession} from '../session/get-session.decorator';
+import {Mutation, Resolver, Query} from '@nestjs/graphql';
 import {MediaRepository} from '../database/media/media.repository';
-import {
-  Controller,
-  Get,
-  Param,
-  Post,
-  UploadedFile,
-  UseInterceptors,
-} from '@nestjs/common';
+import {Param, UploadedFile, UseInterceptors} from '@nestjs/common';
 
-@Controller('media')
+@Resolver(() => MediaModel)
 @HasSession()
-export class MediaUploadController {
+export class MediaUploadResolver {
   constructor(
     private readonly mediaService: MediaService,
     private readonly mediaRepo: MediaRepository
   ) {}
 
-  @Post()
+  @Mutation(() => MediaModel)
   @UseInterceptors(FileInterceptor('file'))
-  async uploadMedia(
+  async mediaCreate(
     @UploadedFile()
     file: Express.Multer.File,
     @GetSession() session: UserEntity
-  ): Promise<Media> {
+  ): Promise<MediaModel> {
     const newMedia = await this.mediaService.createMedia(
       session.id!,
       file.filename,
@@ -41,11 +36,11 @@ export class MediaUploadController {
       file.path
     );
     const mediaURL = await this.mediaService.getMediaURL(newMedia);
-    return mediaWire(newMedia, mediaURL);
+    return mediaWire(newMedia, mediaURL) as any;
   }
 
-  @Get()
-  async getMediaByUser(@GetSession() session: UserEntity): Promise<Media[]> {
+  @Query(() => [MediaModel])
+  async medias(@GetSession() session: UserEntity): Promise<MediaModel[]> {
     const mediaForUser = await this.mediaRepo.find({userID: session.id});
     const mediaURLs: string[] = [];
 
@@ -56,13 +51,11 @@ export class MediaUploadController {
 
     return mediaForUser.map((media, mediaIndex) =>
       mediaWire(media, mediaURLs[mediaIndex])
-    );
+    ) as any;
   }
 
-  @Get(':mediaID')
-  async getMediaByID(
-    @Param('mediaID', MediaPipe) media: MediaEntity
-  ): Promise<Media> {
+  @Query(() => MediaModel)
+  async media(@Param('mediaID', MediaPipe) media: MediaEntity): Promise<Media> {
     const mediaURL = await this.mediaService.getMediaURL(media);
     return mediaWire(media, mediaURL);
   }

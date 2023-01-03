@@ -2,11 +2,11 @@ import crypto from 'crypto';
 import {getExtension} from 'mime';
 import {diskStorage} from 'multer';
 import {Module} from '@nestjs/common';
-import {MulterModule} from '@nestjs/platform-express';
 import {MediaModule} from '../media/media.module';
+import {MulterModule} from '@nestjs/platform-express';
 import {SessionModule} from '../session/session.module';
 import {DatabaseModule} from '../database/database.module';
-import {MediaUploadController} from './media-upload.controller';
+import {MediaUploadResolver} from './media-upload.resolver';
 
 @Module({
   imports: [
@@ -42,6 +42,6 @@ import {MediaUploadController} from './media-upload.controller';
       }),
     }),
   ],
-  controllers: [MediaUploadController],
+  providers: [MediaUploadResolver],
 })
 export class MediaUploadModule {}
