@@ -24,7 +24,11 @@ export function SiteSidebar() {
       <MenuList>
         {SITE_NAVIGATION_LINKS.map(_ => {
           const navLink: any = (
-            <SidebarMenuLink href={_.href} icon={_.icon}>
+            <SidebarMenuLink
+              key={`sidebar_menu_${_.href}`}
+              href={_.href}
+              icon={_.icon}
+            >
               {_.label}
             </SidebarMenuLink>
           );
@@ -32,7 +36,7 @@ export function SiteSidebar() {
           if (_.guard) {
             const NavGuard: any = _.guard;
             return (
-              <NavGuard redirect={false}>
+              <NavGuard key={`sidebar_menu_guard_${_.href}`} redirect={false}>
                 <>{navLink}</>
               </NavGuard>
             );
