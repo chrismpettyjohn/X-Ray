@@ -1,75 +1,68 @@
 import {PermissionGroupPipe} from './permission-group.pipe';
-import {
-  CreatePermissionGroupDTOImplementation,
-  UpdatePermissionGroupDTOImplementation,
-} from './permission-group.dto';
-import {PermissionGroup} from '@xray/types';
+import {Mutation, Resolver, Query} from '@nestjs/graphql';
 import {HasScope} from '../session/permission-scope.decorator';
+import {PermissionGroupModel} from './permission-group.model';
 import {permissionGroupWire} from '../database/permission-group/permission-group.wire';
 import {PermissionGroupEntity} from '../database/permission-group/permission-group.entity';
 import {PermissionGroupRepository} from '../database/permission-group/permission-group.repository';
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+  CreatePermissionGroupDTOImplementation,
+  UpdatePermissionGroupDTOImplementation,
+} from './permission-group.dto';
+import {Body, Param} from '@nestjs/common';
 
-@Controller('permission-groups')
-export class PermissionGroupController {
+@Resolver(() => PermissionGroupModel)
+export class PermissionGroupResolver {
   constructor(
     private readonly permissionGroupRepo: PermissionGroupRepository
   ) {}
 
-  @Post()
+  @Mutation(() => PermissionGroupModel)
   @HasScope('managePermissionGroups')
-  async createPermissionGroup(
+  async permissionGroupCreate(
     @Body() createPermissionGroupDTO: CreatePermissionGroupDTOImplementation
-  ): Promise<PermissionGroup> {
+  ): Promise<PermissionGroupModel> {
     const newPermissionGroup = await this.permissionGroupRepo.create(
       createPermissionGroupDTO
     );
-    return permissionGroupWire(newPermissionGroup);
+    return permissionGroupWire(newPermissionGroup) as any;
   }
 
-  @Get()
+  @Query(() => [PermissionGroupModel])
   @HasScope('managePermissionGroups')
-  async getMany(): Promise<PermissionGroup[]> {
+  async permissionGroups(): Promise<PermissionGroupModel[]> {
     const ranks: PermissionGroupEntity[] =
       await this.permissionGroupRepo.getAll();
-    return ranks.map(rank => permissionGroupWire(rank));
+    return ranks.map(rank => permissionGroupWire(rank)) as any;
   }
 
-  @Get(':rankID')
+  @Query(() => PermissionGroupModel)
   @HasScope('managePermissionGroups')
-  getByID(
+  permissionGroup(
     @Param('rankID', PermissionGroupPipe) rank: PermissionGroupEntity
-  ): PermissionGroup {
-    return permissionGroupWire(rank);
+  ): PermissionGroupModel {
+    return permissionGroupWire(rank) as any;
   }
 
-  @Patch(':rankID')
+  @Mutation(() => PermissionGroupModel)
   @HasScope('managePermissionGroups')
-  async updateByID(
+  async permissionGroupUpdate(
     @Param('rankID', PermissionGroupPipe) rank: PermissionGroupEntity,
     @Body() updatePermissionGroupDTO: UpdatePermissionGroupDTOImplementation
-  ): Promise<string> {
+  ): Promise<PermissionGroupModel> {
     await this.permissionGroupRepo.update(
       {id: rank.id!},
       updatePermissionGroupDTO
     );
-    return 'Your changes have been saved';
+    return this.permissionGroup(rank);
   }
 
-  @Delete(':rankID')
+  @Mutation(() => Boolean)
   @HasScope('managePermissionGroups')
-  async deleteByID(
+  async permissionGroupDelete(
     @Param('rankID', PermissionGroupPipe) rank: PermissionGroupEntity
-  ): Promise<string> {
+  ): Promise<Boolean> {
     await this.permissionGroupRepo.delete({id: rank.id!});
-    return 'PermissionGroup has been deleted';
+    return true;
   }
 }

@@ -10,8 +10,8 @@ import {userWire} from '../database/user/user.wire';
 import {MediaService} from '../media/media.service';
 import {UserEntity} from '../database/user/user.entity';
 import {Mutation, Resolver, Query} from '@nestjs/graphql';
-import {UserRepository} from '../database/user/user.repository';
 import {Body, NotFoundException, Res} from '@nestjs/common';
+import {UserRepository} from '../database/user/user.repository';
 
 @Resolver(() => SessionModel)
 export class SessionResolver {
@@ -22,7 +22,7 @@ export class SessionResolver {
   ) {}
 
   @Mutation(() => SessionModel)
-  async createSession(
+  async sessionCreate(
     @Body() newSession: NewSessionDTO,
     @Res() response: Response
   ): Promise<Response> {
@@ -46,7 +46,7 @@ export class SessionResolver {
 
   @Mutation(() => Boolean)
   @HasSession()
-  async updatePreferences(
+  async sessionUpdatePreferences(
     @Body() updateSessionPreferences: UpdateUserDTO,
     @GetSession() user: UserEntity
   ): Promise<boolean> {
@@ -56,14 +56,14 @@ export class SessionResolver {
   }
 
   @Mutation(() => Boolean)
-  async endSession(@Res() response: Response): Promise<Boolean> {
+  async sessionLogout(@Res() response: Response): Promise<Boolean> {
     response.clearCookie('user_token');
     return true;
   }
 
   @Query(() => UserModel)
   @HasSession()
-  async getSession(@GetSession() session: UserEntity): Promise<UserModel> {
+  async session(@GetSession() session: UserEntity): Promise<UserModel> {
     const profilePicture = session.profilePictureMedia
       ? await this.mediaService.getMediaURL(session.profilePictureMedia)
       : undefined;

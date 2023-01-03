@@ -20,7 +20,7 @@ export class UserResolver {
   ) {}
 
   @Mutation(() => UserModel)
-  async createUser(
+  async userCreate(
     @Body() newUser: CreateUserDTOImplementation,
     @Res() response: Response
   ): Promise<void> {
@@ -45,7 +45,7 @@ export class UserResolver {
   }
 
   @Query(() => UserModel)
-  getUserByID(@Param('userID', UserPipe) user: UserEntity): Promise<User> {
+  user(@Param('userID', UserPipe) user: UserEntity): Promise<User> {
     return this.userService.getWireForUser(user);
   }
 }

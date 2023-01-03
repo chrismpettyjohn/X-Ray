@@ -42,13 +42,18 @@ type SessionModel {
 }
 
 type Query {
-  getSession: UserModel!
-  getUserByID: UserModel!
+  permissionGroups: [PermissionGroupModel!]!
+  permissionGroup: PermissionGroupModel!
+  session: UserModel!
+  user: UserModel!
 }
 
 type Mutation {
-  createSession: SessionModel!
-  updatePreferences: Boolean!
-  endSession: Boolean!
-  createUser: UserModel!
+  permissionGroupCreate: PermissionGroupModel!
+  permissionGroupUpdate: PermissionGroupModel!
+  permissionGroupDelete: Boolean!
+  sessionCreate: SessionModel!
+  sessionUpdatePreferences: Boolean!
+  sessionLogout: Boolean!
+  userCreate: UserModel!
 }
