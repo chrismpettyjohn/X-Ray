@@ -3,9 +3,9 @@ import {getExtension} from 'mime';
 import {diskStorage} from 'multer';
 import {Module} from '@nestjs/common';
 import {MulterModule} from '@nestjs/platform-express';
-import { MediaModule } from '../media/media.module';
-import { SessionModule } from '../session/session.module';
-import { DatabaseModule } from '../database/database.module';
+import {MediaModule} from '../media/media.module';
+import {SessionModule} from '../session/session.module';
+import {DatabaseModule} from '../database/database.module';
 import {MediaUploadController} from './media-upload.controller';
 
 @Module({

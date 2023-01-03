@@ -1,15 +1,15 @@
-import path, { resolve } from 'path';
+import path, {resolve} from 'path';
 import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {GraphQLModule} from '@nestjs/graphql';
 import {UserModule} from './user/user.module';
 import {MediaModule} from './media/media.module';
 import {GoogleModule} from './google/google.module';
-import { CommonModule } from './common/common.module';
+import {CommonModule} from './common/common.module';
 import {SessionModule} from './session/session.module';
 import {ServeStaticModule} from '@nestjs/serve-static';
 import {DatabaseModule} from './database/database.module';
-import { databaseEntities } from './database/database.meta';
+import {databaseEntities} from './database/database.meta';
 import {MediaUploadModule} from './media-upload/media-upload.module';
 import {PermissionGroupModule} from './permission-group/permission-group.module';
 import {
@@ -21,7 +21,7 @@ import {
   DATABASE_SSL,
   GRAPHQL_PLAYGROUND,
 } from './common/environment';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import {ApolloDriver, ApolloDriverConfig} from '@nestjs/apollo';
 
 @Module({
   imports: [

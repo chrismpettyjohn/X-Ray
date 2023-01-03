@@ -1,4 +1,4 @@
-import { UserModel } from '../user/user.model';
+import {UserModel} from '../user/user.model';
 import {Field, ObjectType} from '@nestjs/graphql';
 
 @ObjectType()
@@ -21,10 +21,9 @@ export class PermissionGroupModel {
   @Field({nullable: true})
   description?: string;
 
-  @Field(() => PermissionGroupScopesModel, { nullable: true})
+  @Field(() => PermissionGroupScopesModel, {nullable: true})
   scopes?: PermissionGroupScopesModel;
 
   @Field(() => UserModel, {nullable: true})
   users?: UserModel[];
-
 }

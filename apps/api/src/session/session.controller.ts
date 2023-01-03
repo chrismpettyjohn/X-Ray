@@ -4,10 +4,10 @@ import {User, UpdateUserDTO} from '@xray/types';
 import {SessionService} from './session.service';
 import {HasSession} from './has-session.decorator';
 import {GetSession} from './get-session.decorator';
-import { userWire } from '../database/user/user.wire';
-import { MediaService } from '../media/media.service';
-import { UserEntity } from '../database/user/user.entity';
-import { UserRepository } from '../database/user/user.repository';
+import {userWire} from '../database/user/user.wire';
+import {MediaService} from '../media/media.service';
+import {UserEntity} from '../database/user/user.entity';
+import {UserRepository} from '../database/user/user.repository';
 import {
   Body,
   Controller,

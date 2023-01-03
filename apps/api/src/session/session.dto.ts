@@ -1,4 +1,4 @@
-import { ValidRecaptcha } from '../google/recaptcha.constraint';
+import {ValidRecaptcha} from '../google/recaptcha.constraint';
 import {IsNotEmpty, IsString, Validate} from 'class-validator';
 
 export class NewSessionDTO {

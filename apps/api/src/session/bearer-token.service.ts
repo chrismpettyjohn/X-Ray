@@ -1,6 +1,6 @@
 import JWT from 'jsonwebtoken';
 import {Injectable} from '@nestjs/common';
-import { JWT_EXPIRES, JWT_SECRET } from '../common/environment';
+import {JWT_EXPIRES, JWT_SECRET} from '../common/environment';
 
 @Injectable()
 export class BearerTokenService {

@@ -1,8 +1,8 @@
 import {User} from '@xray/types';
 import {Injectable} from '@nestjs/common';
-import { userWire } from '../database/user/user.wire';
-import { MediaService } from '../media/media.service';
-import { UserEntity } from '../database/user/user.entity';
+import {userWire} from '../database/user/user.wire';
+import {MediaService} from '../media/media.service';
+import {UserEntity} from '../database/user/user.entity';
 
 @Injectable()
 export class UserService {

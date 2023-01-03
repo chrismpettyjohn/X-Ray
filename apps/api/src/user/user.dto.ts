@@ -1,5 +1,5 @@
 import {CreateUserDTO, UpdateUserDTO} from '@xray/types';
-import { ValidRecaptcha } from '../google/recaptcha.constraint';
+import {ValidRecaptcha} from '../google/recaptcha.constraint';
 import {
   IsEmail,
   IsNotEmpty,

@@ -3,7 +3,7 @@ import {UserEntity} from './user.entity';
 import {Injectable} from '@nestjs/common';
 import {InjectRepository} from '@nestjs/typeorm';
 import {BaseRepository} from '../base.repository';
-import { HashService } from '../../common/hash.service';
+import {HashService} from '../../common/hash.service';
 
 @Injectable()
 export class UserRepository extends BaseRepository<UserEntity> {

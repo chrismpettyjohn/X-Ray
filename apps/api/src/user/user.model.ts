@@ -1,6 +1,6 @@
-import { MediaModel } from '../media/media.model';
+import {MediaModel} from '../media/media.model';
 import {Field, ObjectType} from '@nestjs/graphql';
-import { PermissionGroupModel } from '../permission-group/permission-group.model';
+import {PermissionGroupModel} from '../permission-group/permission-group.model';
 
 @ObjectType()
 export class UserModel {
@@ -15,5 +15,4 @@ export class UserModel {
 
   @Field(() => MediaModel, {nullable: true})
   profilePicture?: MediaModel;
-
 }

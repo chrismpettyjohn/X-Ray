@@ -4,10 +4,10 @@ import {
   UpdatePermissionGroupDTOImplementation,
 } from './permission-group.dto';
 import {PermissionGroup} from '@xray/types';
-import { HasScope  } from '../session/permission-scope.decorator';
-import { permissionGroupWire } from '../database/permission-group/permission-group.wire';
-import { PermissionGroupEntity } from '../database/permission-group/permission-group.entity';
-import { PermissionGroupRepository } from '../database/permission-group/permission-group.repository';
+import {HasScope} from '../session/permission-scope.decorator';
+import {permissionGroupWire} from '../database/permission-group/permission-group.wire';
+import {PermissionGroupEntity} from '../database/permission-group/permission-group.entity';
+import {PermissionGroupRepository} from '../database/permission-group/permission-group.repository';
 import {
   Body,
   Controller,

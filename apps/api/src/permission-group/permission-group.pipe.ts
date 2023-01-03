@@ -1,6 +1,6 @@
 import {PipeTransform, Injectable, NotFoundException} from '@nestjs/common';
-import { PermissionGroupEntity  } from '../database/permission-group/permission-group.entity';
-import { PermissionGroupRepository } from '../database/permission-group/permission-group.repository';
+import {PermissionGroupEntity} from '../database/permission-group/permission-group.entity';
+import {PermissionGroupRepository} from '../database/permission-group/permission-group.repository';
 
 @Injectable()
 export class PermissionGroupPipe implements PipeTransform {

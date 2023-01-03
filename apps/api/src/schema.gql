@@ -1,0 +1,45 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type MediaModel {
+  id: Float
+  url: String
+  type: MediaType
+  extension: String
+  createdAt: String
+  updatedAt: String
+}
+
+enum MediaType {
+  Video
+  Photo
+}
+
+type PermissionGroupScopesModel {
+  managePermissionGroup: Boolean
+}
+
+type PermissionGroupModel {
+  id: Float
+  orderById: Float
+  title: String
+  description: String
+  scopes: PermissionGroupScopesModel
+  users: UserModel
+}
+
+type UserModel {
+  id: Float
+  username: String
+  permissionGroup: PermissionGroupModel
+  profilePicture: MediaModel
+}
+
+type Query {
+  getUserByID: UserModel!
+}
+
+type Mutation {
+  createUser: UserModel!
+}

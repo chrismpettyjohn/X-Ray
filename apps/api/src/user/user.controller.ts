@@ -4,9 +4,9 @@ import {UserPipe} from './user.pipe';
 import {UserService} from './user.service';
 import {isValidUsername} from './is-valid-username';
 import {CreateUserDTOImplementation} from './user.dto';
-import { UserEntity } from '../database/user/user.entity';
-import { SessionService } from '../session/session.service';
-import { UserRepository } from '../database/user/user.repository';
+import {UserEntity} from '../database/user/user.entity';
+import {SessionService} from '../session/session.service';
+import {UserRepository} from '../database/user/user.repository';
 import {
   Body,
   Controller,

@@ -2,9 +2,9 @@ import {Request} from 'express';
 import {Strategy} from 'passport-jwt';
 import {Injectable} from '@nestjs/common';
 import {PassportStrategy} from '@nestjs/passport';
-import { JWT_SECRET  } from '../common/environment';
-import { UserEntity } from '../database/user/user.entity';
-import { UserRepository } from '../database/user/user.repository';
+import {JWT_SECRET} from '../common/environment';
+import {UserEntity} from '../database/user/user.entity';
+import {UserRepository} from '../database/user/user.repository';
 
 @Injectable()
 export class BearerTokenStrategy extends PassportStrategy(

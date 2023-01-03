@@ -1,6 +1,6 @@
 import {Module} from '@nestjs/common';
 import {PermissionGroupPipe} from './permission-group.pipe';
-import { DatabaseModule } from '../database/database.module';
+import {DatabaseModule} from '../database/database.module';
 import {PermissionGroupController} from './permission-group.controller';
 
 @Module({

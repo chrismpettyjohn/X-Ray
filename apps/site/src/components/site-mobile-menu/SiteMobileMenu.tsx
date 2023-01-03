@@ -22,7 +22,10 @@ export function SiteMobileMenu() {
           if (_.guard) {
             const NavGuard: any = _.guard;
             return (
-              <NavGuard key={`mobile_menu_guard_${_.href}_${key}`} redirect={false}>
+              <NavGuard
+                key={`mobile_menu_guard_${_.href}_${key}`}
+                redirect={false}
+              >
                 <>{navLink}</>
               </NavGuard>
             );

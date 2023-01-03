@@ -1,7 +1,7 @@
-import { API_URL  } from '../common/environment';
-import { MediaEntity  } from '../database/media/media.entity';
+import {API_URL} from '../common/environment';
+import {MediaEntity} from '../database/media/media.entity';
 import {Injectable, UnauthorizedException} from '@nestjs/common';
-import { MediaRepository  } from '../database/media/media.repository';
+import {MediaRepository} from '../database/media/media.repository';
 
 @Injectable()
 export class MediaService {

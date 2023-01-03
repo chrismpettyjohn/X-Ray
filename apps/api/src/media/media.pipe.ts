@@ -1,5 +1,5 @@
-import { MediaEntity } from '../database/media/media.entity';
-import { MediaRepository  } from '../database/media/media.repository';
+import {MediaEntity} from '../database/media/media.entity';
+import {MediaRepository} from '../database/media/media.repository';
 import {Injectable, NotFoundException, PipeTransform} from '@nestjs/common';
 
 @Injectable()

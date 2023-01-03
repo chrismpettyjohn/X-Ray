@@ -1,15 +1,15 @@
 import {Response} from 'express';
 import {User} from '@xray/types';
 import {UserPipe} from './user.pipe';
-import { UserModel } from './user.model';
+import {UserModel} from './user.model';
 import {UserService} from './user.service';
 import {isValidUsername} from './is-valid-username';
 import {CreateUserDTOImplementation} from './user.dto';
-import { UserEntity } from '../database/user/user.entity';
-import { Resolver, Mutation, Query } from '@nestjs/graphql';
-import { SessionService  } from '../session/session.service';
-import { UserRepository  } from '../database/user/user.repository';
-import {Body,BadRequestException,Param,Res,} from '@nestjs/common';
+import {UserEntity} from '../database/user/user.entity';
+import {Resolver, Mutation, Query} from '@nestjs/graphql';
+import {SessionService} from '../session/session.service';
+import {UserRepository} from '../database/user/user.repository';
+import {Body, BadRequestException, Param, Res} from '@nestjs/common';
 
 @Resolver(() => UserModel)
 export class UserResolver {

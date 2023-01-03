@@ -1,14 +1,14 @@
 import {Express} from 'express';
 import {Media} from '@xray/types';
-import { MediaPipe } from '../media/media.pipe';
-import { MediaService  } from '../media/media.service';
-import { mediaWire } from '../database/media/media.wire';
+import {MediaPipe} from '../media/media.pipe';
+import {MediaService} from '../media/media.service';
+import {mediaWire} from '../database/media/media.wire';
 import {FileInterceptor} from '@nestjs/platform-express';
-import { UserEntity } from '../database/user/user.entity';
-import { MediaEntity } from '../database/media/media.entity';
-import { HasSession  } from '../session/has-session.decorator';
-import { GetSession  } from '../session/get-session.decorator';
-import { MediaRepository  } from '../database/media/media.repository';
+import {UserEntity} from '../database/user/user.entity';
+import {MediaEntity} from '../database/media/media.entity';
+import {HasSession} from '../session/has-session.decorator';
+import {GetSession} from '../session/get-session.decorator';
+import {MediaRepository} from '../database/media/media.repository';
 import {
   Controller,
   Get,

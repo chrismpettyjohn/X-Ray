@@ -5,8 +5,9 @@ export enum MediaType {
   Photo = 'photo',
 }
 
-registerEnumType(MediaType);
-
+registerEnumType(MediaType, {
+  name: 'MediaType',
+});
 
 @ObjectType()
 export class MediaModel {
@@ -18,14 +19,13 @@ export class MediaModel {
 
   @Field(() => MediaType, {nullable: true})
   type?: MediaType;
-  
+
   @Field({nullable: true})
   extension?: string;
-  
+
   @Field({nullable: true})
   createdAt?: string;
-  
+
   @Field({nullable: true})
   updatedAt?: string;
-  
 }
