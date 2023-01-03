@@ -4,7 +4,7 @@ import {NestFactory} from '@nestjs/core';
 import cookieParser from 'cookie-parser';
 import {useContainer} from 'class-validator';
 import {ValidationPipe} from '@nestjs/common';
-import {ALLOWED_CORS_HOSTS, HTTPS_CERT, HTTPS_KEY} from '@xray/common';
+import {ALLOWED_CORS_HOSTS, HTTPS_CERT, HTTPS_KEY} from './common/environment';
 
 async function bootstrap() {
   const app = await NestFactory.create(XRayAPI, {

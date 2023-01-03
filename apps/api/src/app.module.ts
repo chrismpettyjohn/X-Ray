@@ -1,17 +1,18 @@
 import path, { resolve } from 'path';
 import {Module} from '@nestjs/common';
-import {UserModule} from '@xray/users';
-import {MediaModule} from '@xray/media';
-import {GoogleModule} from '@xray/google';
-import {SessionModule} from '@xray/session';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {GraphQLModule} from '@nestjs/graphql';
-import {MediaUploadModule} from '@xray/media-upload';
+import {UserModule} from './user/user.module';
+import {MediaModule} from './media/media.module';
+import {GoogleModule} from './google/google.module';
+import { CommonModule } from './common/common.module';
+import {SessionModule} from './session/session.module';
 import {ServeStaticModule} from '@nestjs/serve-static';
-import {PermissionGroupModule} from '@xray/permission-group';
-import {databaseEntities, DatabaseModule} from '@xray/database';
+import {DatabaseModule} from './database/database.module';
+import { databaseEntities } from './database/database.meta';
+import {MediaUploadModule} from './media-upload/media-upload.module';
+import {PermissionGroupModule} from './permission-group/permission-group.module';
 import {
-  CommonModule,
   DATABASE_HOST,
   DATABASE_PORT,
   DATABASE_NAME,
@@ -19,7 +20,7 @@ import {
   DATABASE_USER,
   DATABASE_SSL,
   GRAPHQL_PLAYGROUND,
-} from '@xray/common';
+} from './common/environment';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({

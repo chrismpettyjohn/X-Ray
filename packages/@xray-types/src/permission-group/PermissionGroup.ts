@@ -9,7 +9,6 @@ export interface PermissionGroup {
   orderById: number;
   title: string;
   description: string;
-
   scopes: PermissionGroupScopes;
   users?: User[];
 }

@@ -1,12 +1,12 @@
 export type MediaType = 'video' | 'photo';
 
 export interface Media {
-  id: number;
-  url: string;
-  type: MediaType;
-  extension: string;
-  createdAt: string;
-  updatedAt: string;
+  id?: number;
+  url?: string;
+  type?: MediaType;
+  extension?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export const exampleMedia: Media = {
