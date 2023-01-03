@@ -1,6 +1,7 @@
 import {defineConfig} from 'vite';
 import react from '@vitejs/plugin-react';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 
 export default defineConfig({
   server: {
@@ -9,5 +10,5 @@ export default defineConfig({
       cert: '../ssl/cert.pem',
     },
   },
-  plugins: [tsconfigPaths(), react()],
+  plugins: [tsconfigPaths(), viteCommonjs(), react()],
 });

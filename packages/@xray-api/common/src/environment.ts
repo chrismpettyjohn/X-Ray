@@ -19,6 +19,9 @@ export const DATABASE_PASS: string = getEnvOrFail('DATABASE_PASS');
 export const DATABASE_NAME: string = getEnvOrFail('DATABASE_NAME');
 export const DATABASE_SSL: boolean = getEnvOrFail('DATABASE_SSL') === 'true';
 
+// GraphQL
+export const GRAPHQL_PLAYGROUND: boolean = getEnvOrFail('GRAPHQL_PLAYGROUND') === 'true';
+
 // Authentication
 export const JWT_SECRET: string = getEnvOrFail('JWT_SECRET');
 export const JWT_EXPIRES = Number(getEnvOrFail('JWT_EXPIRES'));

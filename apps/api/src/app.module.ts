@@ -1,12 +1,13 @@
-import path from 'path';
+import path, { resolve } from 'path';
 import {Module} from '@nestjs/common';
 import {UserModule} from '@xray/users';
 import {MediaModule} from '@xray/media';
-import {TypeOrmModule} from '@nestjs/typeorm';
 import {GoogleModule} from '@xray/google';
 import {SessionModule} from '@xray/session';
-import {ServeStaticModule} from '@nestjs/serve-static';
+import {TypeOrmModule} from '@nestjs/typeorm';
+import {GraphQLModule} from '@nestjs/graphql';
 import {MediaUploadModule} from '@xray/media-upload';
+import {ServeStaticModule} from '@nestjs/serve-static';
 import {PermissionGroupModule} from '@xray/permission-group';
 import {databaseEntities, DatabaseModule} from '@xray/database';
 import {
@@ -17,7 +18,9 @@ import {
   DATABASE_PASS,
   DATABASE_USER,
   DATABASE_SSL,
+  GRAPHQL_PLAYGROUND,
 } from '@xray/common';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
@@ -29,6 +32,14 @@ import {
     SessionModule,
     UserModule,
     MediaUploadModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      debug: false,
+      playground: GRAPHQL_PLAYGROUND,
+      autoSchemaFile: resolve(__dirname, './schema.gql'),
+      fieldResolverEnhancers: ['guards'],
+      installSubscriptionHandlers: true,
+    }),
     ServeStaticModule.forRoot({
       serveRoot: '/uploads',
       rootPath: path.resolve(__dirname, '..', 'uploads'),

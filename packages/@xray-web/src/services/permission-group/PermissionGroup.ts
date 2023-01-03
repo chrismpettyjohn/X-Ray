@@ -1,6 +1,6 @@
 import {PermissionGroupService} from './PermissionGroup.types';
 import {AxiosResponse} from 'axios';
-import {backendAPI} from '../../api/API.axios';
+import {backendAPI} from '../../api';
 import {
   PermissionGroup,
   CreatePermissionGroupDTO,
