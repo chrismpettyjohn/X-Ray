@@ -27,7 +27,6 @@ export function SiteLayout({children}: SiteLayoutProps) {
       <Box
         component={Grid}
         item
-        lg={2}
         display={{xs: 'block', md: 'block', lg: 'block', xl: 'none'}}
         sx={{position: 'fixed', bottom: 0, left: 0}}
       >
