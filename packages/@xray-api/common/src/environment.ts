@@ -13,7 +13,7 @@ export const API_URL: string = getEnvOrFail('API_URL');
 
 // Database
 export const DATABASE_HOST: string = getEnvOrFail('DATABASE_HOST');
-export const DATABASE_PORT: string = getEnvOrFail('DATABASE_PORT');
+export const DATABASE_PORT = Number(getEnvOrFail('DATABASE_PORT'));
 export const DATABASE_USER: string = getEnvOrFail('DATABASE_USER');
 export const DATABASE_PASS: string = getEnvOrFail('DATABASE_PASS');
 export const DATABASE_NAME: string = getEnvOrFail('DATABASE_NAME');
