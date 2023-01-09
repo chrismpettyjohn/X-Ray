@@ -1,7 +1,12 @@
 import React from 'react';
-import {SessionContextProvider} from './session';
 import {ContextProvidersProps} from './ContextProviders.types';
+import {SessionContextProvider} from './session/SessionProvider';
+import {GraphQLContextProvider} from './graphql/GraphQLContextProvider';
 
 export function ContextProviders({children}: ContextProvidersProps) {
-  return <SessionContextProvider>{children}</SessionContextProvider>;
+  return (
+    <GraphQLContextProvider>
+      <SessionContextProvider>{children}</SessionContextProvider>
+    </GraphQLContextProvider>
+  );
 }

@@ -1,3 +1,9 @@
+export const GRAPHQL_URL = process.env.REACT_APP_GRAPHQL_URL!;
+
+if (!GRAPHQL_URL) {
+  throw new Error('VITE_GRAPHQL_URL is a required env value');
+}
+
 export const GOOGLE_RECAPTCHA_CLIENT_KEY = import.meta.env
   .VITE_GOOGLE_RECAPTCHA_CLIENT_KEY!;
 

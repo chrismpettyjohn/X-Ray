@@ -18,7 +18,7 @@ export function SiteLayout({children}: SiteLayoutProps) {
         <SiteSidebar />
         <SiteFooter />
       </Box>
-      <Grid xs={12} lg={10}>
+      <Grid item xs={12} lg={10}>
         <div style={{flexGrow: 1, height: '100%'}}>
           <SiteHeader />
           <Box sx={{p: 4}}>{children}</Box>

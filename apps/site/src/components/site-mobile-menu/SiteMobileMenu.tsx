@@ -12,7 +12,7 @@ export function SiteMobileMenu() {
         {SITE_NAVIGATION_LINKS.map((_, key) => {
           const navLink: any = (
             <BottomNavigationAction
-              key={`mobile_menu_${_.href}_${key}`}
+              key={`mobile_menu_${key}`}
               icon={<i className={_.icon} />}
               sx={{cursor: 'pointer'}}
               onClick={() => setLocation(_.href)}
@@ -22,10 +22,7 @@ export function SiteMobileMenu() {
           if (_.guard) {
             const NavGuard: any = _.guard;
             return (
-              <NavGuard
-                key={`mobile_menu_guard_${_.href}_${key}`}
-                redirect={false}
-              >
+              <NavGuard key={`mobile_menu_guard_${key}`} redirect={false}>
                 <>{navLink}</>
               </NavGuard>
             );
