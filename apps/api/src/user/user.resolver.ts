@@ -1,8 +1,6 @@
 import {Response} from 'express';
-import {User} from '@xray/types';
 import {UserPipe} from './user.pipe';
 import {UserModel} from './user.model';
-import {UserService} from './user.service';
 import {isValidUsername} from './is-valid-username';
 import {CreateUserDTOImplementation} from './user.dto';
 import {UserEntity} from '../database/user/user.entity';
@@ -15,7 +13,6 @@ import {Body, BadRequestException, Param, Res} from '@nestjs/common';
 export class UserResolver {
   constructor(
     private readonly userRepo: UserRepository,
-    private readonly userService: UserService,
     private readonly sessionService: SessionService
   ) {}
 
@@ -23,11 +20,10 @@ export class UserResolver {
   async userCreate(
     @Body() newUser: CreateUserDTOImplementation,
     @Res() response: Response
-  ): Promise<void> {
+  ): Promise<UserEntity> {
     if (!isValidUsername(newUser.username)) {
       throw new BadRequestException('Invalid Username');
     }
-
     const user: UserEntity = await this.userRepo.create({
       permissionGroupID: 1,
       username: newUser.username,
@@ -39,13 +35,11 @@ export class UserResolver {
 
     response.cookie('user_token', jwt);
 
-    const userWire = await this.userService.getWireForUser(user);
-
-    response.json(userWire);
+    return user;
   }
 
   @Query(() => UserModel)
-  user(@Param('userID', UserPipe) user: UserEntity): Promise<User> {
-    return this.userService.getWireForUser(user);
+  user(@Param('userID', UserPipe) user: UserEntity): UserEntity {
+    return user;
   }
 }

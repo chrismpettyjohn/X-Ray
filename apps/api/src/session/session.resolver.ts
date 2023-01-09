@@ -1,12 +1,10 @@
 import {Response} from 'express';
 import {UpdateUserDTO} from '@xray/types';
-import {NewSessionDTO} from './session.dto';
 import {UserModel} from '../user/user.model';
 import {SessionModel} from './session.model';
 import {SessionService} from './session.service';
 import {HasSession} from './has-session.decorator';
 import {GetSession} from './get-session.decorator';
-import {userWire} from '../database/user/user.wire';
 import {MediaService} from '../media/media.service';
 import {UserEntity} from '../database/user/user.entity';
 import {
@@ -76,10 +74,7 @@ export class SessionResolver {
 
   @Query(() => UserModel)
   @HasSession()
-  async session(@GetSession() session: UserEntity): Promise<UserModel> {
-    const profilePicture = session.profilePictureMedia
-      ? await this.mediaService.getMediaURL(session.profilePictureMedia)
-      : undefined;
-    return userWire(session, profilePicture) as UserModel;
+  session(@GetSession() session: UserEntity): UserEntity {
+    return session;
   }
 }

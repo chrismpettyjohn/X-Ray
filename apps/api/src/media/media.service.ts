@@ -1,3 +1,4 @@
+import {MediaType} from '@xray/types';
 import {API_URL} from '../common/environment';
 import {MediaEntity} from '../database/media/media.entity';
 import {Injectable, UnauthorizedException} from '@nestjs/common';
@@ -21,7 +22,7 @@ export class MediaService {
     fileMime: string,
     filePath: string
   ): Promise<MediaEntity> {
-    const type = fileMime.includes('image') ? 'photo' : 'video';
+    const type = fileMime.includes('image') ? MediaType.Photo : MediaType.Video;
     return this.mediaRepository.create({
       type,
       userID,

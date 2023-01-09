@@ -1,9 +1,5 @@
+import {MediaType} from '@xray/types';
 import {Field, ObjectType, registerEnumType} from '@nestjs/graphql';
-
-export enum MediaType {
-  Video = 'video',
-  Photo = 'photo',
-}
 
 registerEnumType(MediaType, {
   name: 'MediaType',

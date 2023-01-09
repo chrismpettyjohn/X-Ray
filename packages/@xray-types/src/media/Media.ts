@@ -1,5 +1,7 @@
-export type MediaType = 'video' | 'photo';
-
+export enum MediaType {
+  Video = 'video',
+  Photo = 'photo',
+}
 export interface Media {
   id?: number;
   url?: string;
@@ -12,7 +14,7 @@ export interface Media {
 export const exampleMedia: Media = {
   id: 1,
   url: '',
-  type: 'photo',
+  type: MediaType.Photo,
   extension: 'image/png',
   createdAt: '',
   updatedAt: '',

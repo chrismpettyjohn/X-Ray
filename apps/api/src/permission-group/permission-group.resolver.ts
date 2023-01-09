@@ -1,15 +1,14 @@
-import {PermissionGroupPipe} from './permission-group.pipe';
+import {Body, Param} from '@nestjs/common';
 import {Mutation, Resolver, Query} from '@nestjs/graphql';
+import {PermissionGroupPipe} from './permission-group.pipe';
 import {HasScope} from '../session/permission-scope.decorator';
 import {PermissionGroupModel} from './permission-group.model';
-import {permissionGroupWire} from '../database/permission-group/permission-group.wire';
 import {PermissionGroupEntity} from '../database/permission-group/permission-group.entity';
 import {PermissionGroupRepository} from '../database/permission-group/permission-group.repository';
 import {
   CreatePermissionGroupDTOImplementation,
   UpdatePermissionGroupDTOImplementation,
 } from './permission-group.dto';
-import {Body, Param} from '@nestjs/common';
 
 @Resolver(() => PermissionGroupModel)
 export class PermissionGroupResolver {
@@ -21,27 +20,22 @@ export class PermissionGroupResolver {
   @HasScope('managePermissionGroups')
   async permissionGroupCreate(
     @Body() createPermissionGroupDTO: CreatePermissionGroupDTOImplementation
-  ): Promise<PermissionGroupModel> {
-    const newPermissionGroup = await this.permissionGroupRepo.create(
-      createPermissionGroupDTO
-    );
-    return permissionGroupWire(newPermissionGroup) as any;
+  ): Promise<PermissionGroupEntity> {
+    return this.permissionGroupRepo.create(createPermissionGroupDTO);
   }
 
   @Query(() => [PermissionGroupModel])
   @HasScope('managePermissionGroups')
-  async permissionGroups(): Promise<PermissionGroupModel[]> {
-    const ranks: PermissionGroupEntity[] =
-      await this.permissionGroupRepo.getAll();
-    return ranks.map(rank => permissionGroupWire(rank)) as any;
+  async permissionGroups(): Promise<PermissionGroupEntity[]> {
+    return this.permissionGroupRepo.getAll();
   }
 
   @Query(() => PermissionGroupModel)
   @HasScope('managePermissionGroups')
   permissionGroup(
     @Param('rankID', PermissionGroupPipe) rank: PermissionGroupEntity
-  ): PermissionGroupModel {
-    return permissionGroupWire(rank) as any;
+  ): PermissionGroupEntity {
+    return rank;
   }
 
   @Mutation(() => PermissionGroupModel)
@@ -49,7 +43,7 @@ export class PermissionGroupResolver {
   async permissionGroupUpdate(
     @Param('rankID', PermissionGroupPipe) rank: PermissionGroupEntity,
     @Body() updatePermissionGroupDTO: UpdatePermissionGroupDTOImplementation
-  ): Promise<PermissionGroupModel> {
+  ): Promise<PermissionGroupEntity> {
     await this.permissionGroupRepo.update(
       {id: rank.id!},
       updatePermissionGroupDTO
