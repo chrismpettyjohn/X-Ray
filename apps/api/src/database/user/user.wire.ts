@@ -10,7 +10,9 @@ export function userWire(
   return {
     id: userEntity.id!,
     username: userEntity.username,
-    rank: userEntity.rank && permissionGroupWire(userEntity.rank!),
+    rank:
+      userEntity.permissionGroup &&
+      permissionGroupWire(userEntity.permissionGroup!),
     profilePicture:
       userEntity.profilePictureMedia &&
       mediaWire(userEntity.profilePictureMedia, userProfilePictureURL),

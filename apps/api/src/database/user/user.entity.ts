@@ -19,12 +19,12 @@ export class UserEntity {
   @Column({name: 'password'})
   password!: string;
 
-  @Column({name: 'rank_id'})
-  rankID!: number;
+  @Column({name: 'permission_group_id'})
+  permissionGroupID!: number;
 
   @ManyToOne(() => PermissionGroupEntity)
-  @JoinColumn({name: 'rank_id'})
-  rank?: PermissionGroupEntity;
+  @JoinColumn({name: 'permission_group_id'})
+  permissionGroup?: PermissionGroupEntity;
 
   @Column({unique: true, nullable: true})
   emailAddress?: string;

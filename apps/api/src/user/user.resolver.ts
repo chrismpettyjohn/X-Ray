@@ -29,7 +29,7 @@ export class UserResolver {
     }
 
     const user: UserEntity = await this.userRepo.create({
-      rankID: 1,
+      permissionGroupID: 1,
       username: newUser.username,
       password: newUser.password,
       profilePictureMediaID: undefined,

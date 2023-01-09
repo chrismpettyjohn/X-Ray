@@ -34,9 +34,14 @@ import {ApolloDriver, ApolloDriverConfig} from '@nestjs/apollo';
     UserModule,
     MediaUploadModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      context: ({req, res}) => ({req, res}),
       driver: ApolloDriver,
       debug: false,
-      playground: GRAPHQL_PLAYGROUND,
+      playground: {
+        settings: {
+          'request.credentials': 'include',
+        },
+      },
       autoSchemaFile: resolve(__dirname, './schema.gql'),
       fieldResolverEnhancers: ['guards'],
       installSubscriptionHandlers: true,

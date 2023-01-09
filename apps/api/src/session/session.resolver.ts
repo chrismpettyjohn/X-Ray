@@ -9,7 +9,14 @@ import {GetSession} from './get-session.decorator';
 import {userWire} from '../database/user/user.wire';
 import {MediaService} from '../media/media.service';
 import {UserEntity} from '../database/user/user.entity';
-import {Mutation, Resolver, Query} from '@nestjs/graphql';
+import {
+  Mutation,
+  Resolver,
+  Query,
+  Args,
+  Context,
+  GraphQLExecutionContext,
+} from '@nestjs/graphql';
 import {Body, NotFoundException, Res} from '@nestjs/common';
 import {UserRepository} from '../database/user/user.repository';
 
@@ -23,11 +30,13 @@ export class SessionResolver {
 
   @Mutation(() => SessionModel)
   async sessionCreate(
-    @Body() newSession: NewSessionDTO,
-    @Res() response: Response
-  ): Promise<Response> {
+    @Args('username') username: string,
+    @Args('password') password: string,
+    @Args('recaptcha') recaptcha: string,
+    @Context() context: GraphQLExecutionContext
+  ): Promise<SessionModel> {
     const matchingUser = await this.userRepo.findOne({
-      username: newSession.username,
+      username: username,
     });
 
     if (!matchingUser) {
@@ -36,12 +45,16 @@ export class SessionResolver {
 
     const jwt = await this.sessionService.loginWithCredentials(
       matchingUser,
-      newSession.password
+      password
     );
 
-    response.cookie('user_token', jwt);
+    // @ts-ignore
+    context.res.cookie('user_token', jwt);
 
-    return response.json(userWire(matchingUser));
+    return {
+      userID: matchingUser.id!,
+      active: true,
+    };
   }
 
   @Mutation(() => Boolean)

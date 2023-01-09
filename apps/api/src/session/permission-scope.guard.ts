@@ -1,5 +1,5 @@
 import {Reflector} from '@nestjs/core';
-import {RequestWithSession} from './session.type';
+import {RequestWithSession} from './session.types';
 import {PermissionGroupScopes} from '@xray/types';
 import {
   CanActivate,
@@ -18,7 +18,7 @@ export class PermissionScopeGuard implements CanActivate {
       context.getHandler()
     );
     const request: RequestWithSession = context.switchToHttp().getRequest();
-    const hasScope = request?.user?.rank?.scopes?.[scope];
+    const hasScope = request?.user?.permissionGroup?.scopes?.[scope];
 
     if (!hasScope) {
       throw new ForbiddenException("You don't have permission to do this");

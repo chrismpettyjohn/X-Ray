@@ -1,10 +1,11 @@
 import {Module} from '@nestjs/common';
-import {PermissionGroupPipe} from './permission-group.pipe';
+import {SessionModule} from '../session/session.module';
 import {DatabaseModule} from '../database/database.module';
+import {PermissionGroupPipe} from './permission-group.pipe';
 import {PermissionGroupResolver} from './permission-group.resolver';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, SessionModule],
   providers: [PermissionGroupResolver, PermissionGroupPipe],
   exports: [PermissionGroupPipe],
 })

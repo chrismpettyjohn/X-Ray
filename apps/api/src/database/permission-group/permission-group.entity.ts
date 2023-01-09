@@ -19,6 +19,6 @@ export class PermissionGroupEntity {
   @Column({type: 'json', default: JSON.stringify(examplePermissionGroupScopes)})
   scopes!: PermissionGroupScopes;
 
-  @OneToMany(() => UserEntity, (user: UserEntity) => user.rank)
+  @OneToMany(() => UserEntity, (user: UserEntity) => user.permissionGroup)
   users?: UserEntity[];
 }

@@ -1,13 +1,12 @@
 import {JwtModule} from '@nestjs/jwt';
 import {Module} from '@nestjs/common';
-import {PassportModule} from '@nestjs/passport';
 import {SessionService} from './session.service';
 import {MediaModule} from '../media/media.module';
+import {SessionResolver} from './session.resolver';
 import {CommonModule} from '../common/common.module';
 import {GoogleModule} from '../google/google.module';
-import {SessionResolver} from './session.resolver';
+import {HasSessionGuard} from './has-session.guard';
 import {BearerTokenService} from './bearer-token.service';
-import {BearerTokenStrategy} from './bearer-token.strategy';
 import {DatabaseModule} from '../database/database.module';
 import {PermissionScopeGuard} from './permission-scope.guard';
 import {JWT_SECRET, JWT_EXPIRES} from '../common/environment';
@@ -17,7 +16,6 @@ import {JWT_SECRET, JWT_EXPIRES} from '../common/environment';
     MediaModule,
     CommonModule,
     DatabaseModule,
-    PassportModule,
     GoogleModule,
     JwtModule.register({
       secret: JWT_SECRET,
@@ -29,21 +27,16 @@ import {JWT_SECRET, JWT_EXPIRES} from '../common/environment';
   providers: [
     SessionService,
     SessionResolver,
+    HasSessionGuard,
     BearerTokenService,
-    BearerTokenStrategy,
     PermissionScopeGuard,
   ],
   exports: [
+    JwtModule,
     SessionService,
+    HasSessionGuard,
     BearerTokenService,
-    BearerTokenStrategy,
     PermissionScopeGuard,
   ],
 })
-export class SessionModule {
-  constructor() {
-    PassportModule.register({
-      session: true,
-    });
-  }
-}
+export class SessionModule {}

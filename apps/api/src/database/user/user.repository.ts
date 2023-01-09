@@ -8,7 +8,7 @@ import {HashService} from '../../common/hash.service';
 @Injectable()
 export class UserRepository extends BaseRepository<UserEntity> {
   readonly eagerRelations: Array<keyof UserEntity> = [
-    'rank',
+    'permissionGroup',
     'profilePictureMedia',
   ];
 
@@ -16,7 +16,7 @@ export class UserRepository extends BaseRepository<UserEntity> {
     @InjectRepository(UserEntity) userRepository: Repository<UserEntity>,
     private readonly hashService: HashService
   ) {
-    super(userRepository, ['rank', 'profilePictureMedia']);
+    super(userRepository, ['permissionGroup', 'profilePictureMedia']);
   }
 
   async create(user: UserEntity): Promise<UserEntity> {

@@ -54,7 +54,7 @@ type Mutation {
   permissionGroupCreate: PermissionGroupModel!
   permissionGroupUpdate: PermissionGroupModel!
   permissionGroupDelete: Boolean!
-  sessionCreate: SessionModel!
+  sessionCreate(username: String!, password: String!, recaptcha: String!): SessionModel!
   sessionUpdatePreferences: Boolean!
   sessionLogout: Boolean!
   userCreate: UserModel!
