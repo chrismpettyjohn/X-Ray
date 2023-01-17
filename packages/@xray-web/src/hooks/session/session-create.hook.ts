@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
+import {useMutation} from 'urql';
 import {useLocation} from 'wouter';
 import {toast} from 'react-toastify';
 import {useContext, useEffect} from 'react';
-import {useMutation} from '@apollo/client';
 import {useSession} from './session.hook.ts';
 import {sessionContext} from '../../context/session/SessionContext';
 

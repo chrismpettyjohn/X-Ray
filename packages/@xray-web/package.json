@@ -43,10 +43,8 @@
     "wouter": "*",
     "form-data": "*",
     "@react-google-maps/api": "*",
-    "@apollo/client": "3.7.3",
     "graphql": "16.6.0",
-    "@apollo/react-hooks": "4.0.0",
-    "apollo-link-ws": "1.0.20"
+    "urql": "3.0.3"
   },
   "peerDependencies": {
     "@xray/types": "*",
@@ -61,9 +59,8 @@
     "wouter": "*",
     "form-data": "*",
     "@react-google-maps/api": "*",
-    "@apollo/client": "3.7.3",
     "graphql": "16.6.0",
-    "@apollo/react-hooks": "4.0.0"
+    "urql": "3.0.3"
   },
   "gitHead": "ff297101a4dd1311beb7184ac535c61ecc3a2b87"
 }

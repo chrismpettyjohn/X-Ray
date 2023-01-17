@@ -21,10 +21,8 @@
     "react-dropzone": "14.2.3",
     "react-google-recaptcha": "2.1.0",
     "wouter": "2.9.1",
-    "@apollo/client": "3.7.3",
     "graphql": "16.6.0",
-    "@apollo/react-hooks": "4.0.0",
-    "apollo-link-ws": "1.0.20"
+    "urql": "3.0.3"
   },
   "devDependencies": {
     "@types/react": "18.0.26",

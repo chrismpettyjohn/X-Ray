@@ -1,29 +1,16 @@
-import {WebSocketLink} from 'apollo-link-ws';
 import {GRAPHQL_URL} from './environment';
-import {ApolloClient, InMemoryCache} from '@apollo/client';
+import { createClient, dedupExchange, cacheExchange, fetchExchange } from 'urql';
 
-export type GraphQLClient = ApolloClient<any>;
+export type GraphQLClient =any;
 
-export const generateGraphQLClient = (): GraphQLClient => {
-  return new ApolloClient({
-    // @ts-ignore
-    link: new WebSocketLink({
-      uri: GRAPHQL_URL,
-      options: {
-        reconnect: true,
-      },
-    }),
-    cache: new InMemoryCache(),
-  });
-};
-
-export const graphqlClient = new ApolloClient({
-  // @ts-ignore
-  link: new WebSocketLink({
-    uri: GRAPHQL_URL,
-    options: {
-      reconnect: true,
-    },
-  }),
-  cache: new InMemoryCache(),
+export const graphqlClient = createClient({
+  url: GRAPHQL_URL,
+  exchanges: [
+    // deduplicates requests if we send the same queries twice
+    dedupExchange,
+    // from prior example
+    cacheExchange,
+    // responsible for sending our requests to our GraphQL API
+    fetchExchange,
+  ],
 });

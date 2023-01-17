@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
+import {useQuery} from 'urql';
 import {User} from '@xray/types';
 import {useEffect} from 'react';
-import {useQuery} from '@apollo/client';
 
 const SESSION_QUERY = gql`
   query {
