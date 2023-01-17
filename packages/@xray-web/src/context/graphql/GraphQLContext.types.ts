@@ -1,14 +1,12 @@
+import {Client} from 'urql';
 import {ReactNode} from 'react';
-import {GraphQLClient} from '@imagine-cms/web';
 
 export interface GraphQLContext {
-  graphQLClient: GraphQLClient;
-  setGraphQLAccessToken(newAccessToken: string): void;
+  graphqlClient: Client;
 }
 
 export const defaultGraphQLContext: GraphQLContext = {
-  graphQLClient: undefined as any,
-  setGraphQLAccessToken(newAccessToken: string) {},
+  graphqlClient: undefined as any,
 };
 
 export interface GraphQLContextProviderProps {

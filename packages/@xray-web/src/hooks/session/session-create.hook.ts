@@ -27,11 +27,9 @@ export function useSessionCreate(
   const {setUser} = useContext(sessionContext);
   const [location, setLocation] = useLocation();
   const [
+    {data: sessionCreateData, fetching: sessionCreateLoading},
     sessionCreate,
-    {data: sessionCreateData, loading: sessionCreateLoading},
-  ] = useMutation(SESSION_CREATE_MUTATION, {
-    variables: {username, password, recaptcha},
-  });
+  ] = useMutation(SESSION_CREATE_MUTATION);
   const authenticatedUser = useSession(sessionCreateData?.data?.id ?? 0);
 
   useEffect(() => {
@@ -53,7 +51,7 @@ export function useSessionCreate(
 
   return {
     tryLogin: () => {
-      sessionCreate();
+      sessionCreate({username, password, recaptcha});
     },
   };
 }

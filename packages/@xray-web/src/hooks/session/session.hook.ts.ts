@@ -21,14 +21,14 @@ const SESSION_QUERY = gql`
 `;
 
 export function useSession(refresh = 0): User | undefined {
-  const sessionQuery = useQuery(SESSION_QUERY);
+  const [{data}, sessionQuery] = useQuery({query: SESSION_QUERY});
 
   useEffect(() => {
     if (!refresh) {
       return;
     }
-    sessionQuery.refetch();
+    sessionQuery();
   }, [refresh]);
 
-  return sessionQuery.data;
+  return data;
 }

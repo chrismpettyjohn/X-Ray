@@ -10,7 +10,7 @@ export function PermissionGuard({
 }: PermissionGuardProps) {
   const [, setLocation] = useLocation();
   const {user} = useContext(sessionContext);
-  const hasPermission = !!user?.rank?.scopes?.[permission];
+  const hasPermission = !!user?.permissionGroup?.scopes?.[permission];
 
   if (!hasPermission) {
     if (redirect) {

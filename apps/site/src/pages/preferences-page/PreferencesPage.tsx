@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Grid, Paper, Typography} from '@mui/material';
-import {useFetchCurrentUser, UserGuard} from '@xray/web';
+import {useSession, UserGuard} from '@xray/web';
 import {SiteLayout} from '../../components/site-layout/SiteLayout';
 import {CustomizeProfileForm} from '../../components/customize-profile-form/CustomizeProfileForm';
 
 export function PreferencesPage() {
   const [refresh, setRefresh] = useState(0);
-  const privateUser = useFetchCurrentUser(refresh);
+  const privateUser = useSession(refresh);
 
   return (
     <UserGuard>

@@ -1,7 +1,7 @@
 import {GRAPHQL_URL} from './environment';
-import { createClient, dedupExchange, cacheExchange, fetchExchange } from 'urql';
+import {createClient, dedupExchange, cacheExchange, fetchExchange} from 'urql';
 
-export type GraphQLClient =any;
+export type GraphQLClient = any;
 
 export const graphqlClient = createClient({
   url: GRAPHQL_URL,
