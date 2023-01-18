@@ -1,4 +1,4 @@
-export const GRAPHQL_URL = process.env.REACT_APP_GRAPHQL_URL!;
+export const GRAPHQL_URL = import.meta.env.VITE_GRAPHQL_URL!;
 
 if (!GRAPHQL_URL) {
   throw new Error('VITE_GRAPHQL_URL is a required env value');
