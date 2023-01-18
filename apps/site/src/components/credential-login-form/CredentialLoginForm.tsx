@@ -1,28 +1,22 @@
-import {toast} from 'react-toastify';
 import {Link, useLocation} from 'wouter';
 import ReCAPTCHA from 'react-google-recaptcha';
 import {Box, Button, TextField} from '@mui/material';
 import {PasswordField} from '../password-field/PasswordField';
-import React, {createRef, SyntheticEvent, useContext, useState} from 'react';
-import {
-  GOOGLE_RECAPTCHA_CLIENT_KEY,
-  sessionContext,
-  sessionService,
-} from '@xray/web';
+import React, {createRef, SyntheticEvent, useState} from 'react';
+import {GOOGLE_RECAPTCHA_CLIENT_KEY, useSessionCreate} from '@xray/web';
 
 export function CredentialLoginForm() {
   const [, setLocation] = useLocation();
   const recaptchaRef = createRef<any>();
-  const {setUser} = useContext(sessionContext);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [recaptcha, setRecaptcha] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [recaptcha, setRecaptcha] = useState<string | undefined>(undefined);
+  const {tryLogin, loading} = useSessionCreate(username, password, recaptcha!);
 
   const canSubmitForm =
-    username !== '' && password !== '' && !!recaptcha && !isLoading;
+    username !== '' && password !== '' && !!recaptcha && !loading;
 
-  const [buttonIcon, buttonLabel] = isLoading
+  const [buttonIcon, buttonLabel] = loading
     ? ['fas fa-spinner fa-spin', 'Signing In...']
     : ['fas fa-sign-in', 'Sign In'];
 
@@ -33,21 +27,7 @@ export function CredentialLoginForm() {
       return;
     }
 
-    try {
-      setIsLoading(true);
-      const authenticatedUser = await sessionService.attemptCredentials(
-        username,
-        password,
-        recaptcha!
-      );
-      setUser(authenticatedUser);
-      setLocation('/home');
-    } catch (e: any) {
-      toast.error('There was a problem logging in');
-      throw e;
-    } finally {
-      setIsLoading(false);
-    }
+    tryLogin();
   }
 
   return (
@@ -76,8 +56,8 @@ export function CredentialLoginForm() {
       <Box sx={{mt: 2}}>
         <ReCAPTCHA
           sitekey={GOOGLE_RECAPTCHA_CLIENT_KEY}
-          onChange={_ => setRecaptcha(_)}
-          onExpired={() => setRecaptcha(null)}
+          onChange={_ => setRecaptcha(_ ?? undefined)}
+          onExpired={() => setRecaptcha(undefined)}
           ref={recaptchaRef as any}
         />
       </Box>

@@ -20,10 +20,10 @@ const SESSION_CREATE_MUTATION = gql`
 `;
 
 export function useSessionCreate(
-  username: string,
-  password: string,
-  recaptcha: string
-): {tryLogin(): void} {
+  username?: string,
+  password?: string,
+  recaptcha?: string
+): {tryLogin(): void; loading: boolean} {
   const {setUser} = useContext(sessionContext);
   const [location, setLocation] = useLocation();
   const [
@@ -51,7 +51,12 @@ export function useSessionCreate(
 
   return {
     tryLogin: () => {
+      if (!username || !password || !recaptcha) {
+        toast.error('Username, password and recaptcha are required');
+        return;
+      }
       sessionCreate({username, password, recaptcha});
     },
+    loading: sessionCreateLoading,
   };
 }
